@@ -222,8 +222,8 @@ component {
 		return _.find(obj, function(value) {
 			for (var key in attrs) {
 				if (attrs[key] != value[key]) return false;
+				return true;
 			}
-			return true;
 		});
 	}
 
@@ -1937,13 +1937,16 @@ component {
 		Returns a wrapped object. Calling methods on this object will continue to return wrapped objects until value is used.
 	*/
 	// TODO: make this work
-	public any function chain(obj) {
+	/*public any function chain(obj) {
 		var _obj = new Underscore(arguments.obj);
 		return _.wrap(_obj, function (func) {
 			return new Underscore(func(arguments));
 		});
- 	}
+ 	}*/
 
+ 	public any function chain(obj = {}) {
+	    return new underscoreChain(obj, this);
+	}
 
 	/* UTILITY FUNCTIONS */
 
@@ -2025,4 +2028,5 @@ component {
 	private boolean function toBoolean(required obj) {
 		return !!arguments.obj;
 	}
+
 }
