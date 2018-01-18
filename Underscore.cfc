@@ -706,12 +706,8 @@ component {
 		}
 		else if (isQuery(arguments.obj)) {
 			var result = [];
-			for (var index = 1; index <= arguments.obj.RecordCount; index++) {
-				var row = {};
-				for (var colName in listToArray(arguments.obj.columnList)) {
-					row[colName] = arguments.obj[colName][index];
-				}
-				result[index] = row;
+			for (var index in arguments.obj) {
+				arrayAppend(result, index);
 			}
 			return result;
 		}
